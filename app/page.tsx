@@ -1,12 +1,13 @@
-import Image from "next/image";
+import Header from "@/components/header/header";
+import Hero from "./home/hero";
+
 
 export default function Home() {
   return (
-    <main>
-      <header>
-        <div className="menu"></div>
-      </header>
-    </main>
+    <div className="w-full h-full bg-blue-500">
+      <Header />
+      <Hero />
+    </div>
   );
 }
 
