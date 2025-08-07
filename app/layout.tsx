@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
+import { UserProvider } from "@/context/authContext";
 
 export const metadata: Metadata = {
   title: "Workcity Assessment",
@@ -37,7 +38,9 @@ export default function RootLayout({
           theme="light"
           transition={Bounce}
         />
-        {children}
+        <UserProvider>
+          {children}
+        </UserProvider>
       </body>
     </html>
   );

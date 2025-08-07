@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import { useState } from "react";
 import { AiOutlineLoading } from "react-icons/ai";
@@ -5,6 +6,7 @@ import { toast } from "react-toastify";
 import { server_url } from "@/lib/constants";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useUser } from "@/context/authContext";
 
 export default function Login() {
 
@@ -12,6 +14,7 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const [isLoggingIn, setIsLoggingIn] = useState(false);
     const router = useRouter();
+    const { setUser } = useUser();
 
     async function Login() {
 
@@ -26,6 +29,7 @@ export default function Login() {
                 if (res.data.success !== true) {
                     return toast.warn(res.data.message)
                 }
+                setUser(res.data.user);
                 router.push("/clients")
                 return toast.success("Login Success")
             })
